@@ -1,0 +1,14 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8888
+Mysql:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/go_zero?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+CacheRedis:
+  - Host: 127.0.0.1:6379
+    Pass: ""
+    Type: node
+Auth:
+  # 生成jwt token的密钥 一般格式为udid
+  AccessSecret: 0c891c78-9415-ec96-deb8-3b658f9e57f3
+  # jwt token有效期，单位：秒,现在设置的为1小时
+  AccessExpire: 3600

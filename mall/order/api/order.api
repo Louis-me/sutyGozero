@@ -1,0 +1,38 @@
+type (
+	OrderReq {
+		Id     int `json:"id"`
+		UserId int `json:"userid"`
+	}
+
+	OrderReply {
+		Id          int    `json:"id"`
+		Productname string `json:"productname"`
+	}
+
+	OrderAddReq {
+		Productname string `json:"productname"`
+		Price       string `json:"price"`
+		Unit        string `json:"unit"`
+	}
+
+	OrderAddRes {
+		Code     int    `json:"code"`
+		Messsage string `json:"message"`
+	}
+)
+
+// 在哪个服务头上加这个验证，就是需要jwt鉴权
+@server(
+	jwt: Auth
+)
+service order {
+	@handler orderAdd
+	post /api/order/OrderAdd (OrderAddReq) returns (OrderAddRes)
+}
+
+service order {
+	@handler getOrder
+	// get /api/order/get/:id (OrderReq) returns (OrderReply)
+	get /api/order/get (OrderReq) returns (OrderReply)
+
+}
